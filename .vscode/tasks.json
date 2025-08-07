@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Run Expense Tracker",
+			"type": "shell",
+			"command": "java",
+			"args": [
+				"-cp",
+				"src/main/java;src/main/resources",
+				"-Dspring.profiles.active=local",
+				"com.expensetracker.ExpenseTrackerApplication"
+			],
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Expense Tracker",
+            "request": "launch",
+            "mainClass": "com.expensetracker.ExpenseTrackerApplication",
+            "projectName": "cloud-expense-tracker",
+            "args": [],
+            "vmArgs": [
+                "-Dspring.profiles.active=local"
+            ],
+            "env": {
+                "SPRING_PROFILES_ACTIVE": "local"
+            }
+        }
+    ]
+}

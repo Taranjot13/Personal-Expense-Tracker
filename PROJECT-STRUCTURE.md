@@ -1,105 +1,112 @@
-# 📁 **Cloud-Native Expense Tracker - Project Structure**
+# Cloud-Native Expense Tracker - Architecture
+
+## Project Structure
 
 ```
 Personal-Expense-Tracker/
-├── 📁 .github/
-│   └── 📁 workflows/
+├── .github/
+│   └── workflows/
 │       └── ci-cd.yml                  # GitHub Actions CI/CD pipeline
-├── 📁 docs/
+├── .vscode/
+│   └── launch.json                    # VS Code run configuration
+├── docs/
 │   ├── API.md                         # API documentation
 │   └── DEPLOYMENT.md                  # Deployment guide
-├── 📁 infrastructure/
+├── infrastructure/
 │   └── main.tf                        # Terraform infrastructure as code
-├── 📁 scripts/
-│   ├── deploy-aws.sh                  # AWS deployment script
-│   ├── run-local.bat                  # Windows local run script
-│   └── run-local.sh                   # Linux/Mac local run script
-├── 📁 src/
-│   ├── 📁 main/
-│   │   ├── 📁 java/com/expensetracker/
-│   │   │   ├── 📁 config/
+├── scripts/
+│   └── run-local.bat                  # Local development script
+├── src/
+│   ├── main/
+│   │   ├── java/com/expensetracker/
+│   │   │   ├── config/
 │   │   │   │   └── AwsConfig.java     # AWS configuration
-│   │   │   ├── 📁 controller/
+│   │   │   ├── controller/
 │   │   │   │   └── ExpenseController.java  # REST API endpoints
-│   │   │   ├── 📁 dto/
+│   │   │   ├── dto/
 │   │   │   │   ├── ExpenseRequest.java     # Request DTOs
 │   │   │   │   └── ExpenseResponse.java    # Response DTOs
-│   │   │   ├── 📁 exception/
+│   │   │   ├── exception/
 │   │   │   │   ├── ExpenseNotFoundException.java
 │   │   │   │   └── GlobalExceptionHandler.java
-│   │   │   ├── 📁 model/
+│   │   │   ├── model/
 │   │   │   │   └── Expense.java       # Domain model
-│   │   │   ├── 📁 repository/
+│   │   │   ├── repository/
 │   │   │   │   ├── ExpenseRepository.java     # Repository interface
-│   │   │   │   └── DynamoDbExpenseRepository.java  # DynamoDB implementation
-│   │   │   ├── 📁 service/
+│   │   │   │   ├── DynamoDbExpenseRepository.java  # DynamoDB implementation
+│   │   │   │   └── InMemoryExpenseRepository.java  # Local implementation
+│   │   │   ├── service/
 │   │   │   │   └── ExpenseService.java       # Business logic
 │   │   │   └── ExpenseTrackerApplication.java  # Main Spring Boot class
-│   │   └── 📁 resources/
-│   │       └── application.yml        # Application configuration
-│   └── 📁 test/
-│       ├── 📁 java/com/expensetracker/
-│       │   ├── 📁 controller/
+│   │   └── resources/
+│   │       ├── application.yml        # Application configuration
+│   │       └── application-local.yml  # Local development config
+│   └── test/
+│       ├── java/com/expensetracker/
+│       │   ├── controller/
 │       │   │   └── ExpenseControllerTest.java
 │       │   └── ExpenseTrackerApplicationTests.java
-│       └── 📁 resources/
+│       └── resources/
 │           └── application-test.yml   # Test configuration
-├── .env.example                       # Environment variables template
 ├── .gitignore                         # Git ignore rules
 ├── docker-compose.yml                 # Docker Compose configuration
 ├── Dockerfile                         # Container definition
 ├── LICENSE                           # MIT License
 ├── pom.xml                           # Maven build configuration
-└── README.md                         # Comprehensive documentation
+├── PROJECT-STRUCTURE.md              # This file
+└── README.md                         # Project documentation
 ```
 
-## 🎯 **Key Architecture Components:**
+## Architecture Components
 
-### **📱 Application Layer**
-- **ExpenseTrackerApplication.java** - Spring Boot main class
-- **ExpenseController.java** - REST API endpoints with validation
-- **GlobalExceptionHandler.java** - Centralized error handling
+### Application Layer
+| Component | Purpose | Technology |
+|-----------|---------|------------|
+| `ExpenseTrackerApplication.java` | Application entry point | Spring Boot |
+| `ExpenseController.java` | REST API endpoints | Spring Web MVC |
+| `GlobalExceptionHandler.java` | Centralized error handling | Spring AOP |
 
-### **🏗️ Business Layer**
-- **ExpenseService.java** - Business logic and caching
-- **Expense.java** - Domain model with DynamoDB annotations
-- **DTOs** - Request/Response data transfer objects
+### Business Layer
+| Component | Purpose | Technology |
+|-----------|---------|------------|
+| `ExpenseService.java` | Business logic implementation | Spring Service |
+| `Expense.java` | Domain model | JPA/DynamoDB annotations |
+| `ExpenseRequest/Response.java` | Data transfer objects | Bean Validation |
 
-### **💾 Data Layer**
-- **ExpenseRepository.java** - Repository abstraction
-- **DynamoDbExpenseRepository.java** - AWS DynamoDB implementation
-- **AwsConfig.java** - AWS SDK configuration
+### Data Layer
+| Component | Purpose | Technology |
+|-----------|---------|------------|
+| `ExpenseRepository.java` | Data access abstraction | Repository pattern |
+| `DynamoDbExpenseRepository.java` | AWS cloud implementation | AWS SDK v2 |
+| `InMemoryExpenseRepository.java` | Local development implementation | Concurrent collections |
+| `AwsConfig.java` | AWS SDK configuration | Spring Configuration |
 
-### **🐳 DevOps & Deployment**
-- **Dockerfile** - Multi-stage container build
-- **docker-compose.yml** - Local development environment
-- **ci-cd.yml** - GitHub Actions pipeline
-- **main.tf** - Terraform infrastructure
+### Infrastructure & DevOps
+| Component | Purpose | Technology |
+|-----------|---------|------------|
+| `Dockerfile` | Container definition | Docker multi-stage build |
+| `docker-compose.yml` | Local development environment | Docker Compose |
+| `ci-cd.yml` | Automated pipeline | GitHub Actions |
+| `main.tf` | Infrastructure as code | Terraform |
 
-### **📋 Documentation & Scripts**
-- **README.md** - Comprehensive project documentation
-- **API.md** - API endpoint documentation
-- **DEPLOYMENT.md** - Deployment instructions
-- **Scripts** - Automation for local development and AWS deployment
+## Design Patterns
 
----
+- **Repository Pattern**: Abstracts data access logic
+- **Dependency Injection**: Manages component dependencies
+- **Profile-based Configuration**: Environment-specific settings
+- **DTO Pattern**: Separates internal models from API contracts
+- **Global Exception Handling**: Centralized error management
 
-## 🔥 **Interview Highlights:**
+## Development Workflow
 
-### **Cloud-Native Features:**
-✅ **Microservices Architecture** with Spring Boot  
-✅ **AWS DynamoDB** for scalable NoSQL storage  
-✅ **Docker Containerization** for consistent deployments  
-✅ **Infrastructure as Code** with Terraform  
-✅ **CI/CD Pipeline** with GitHub Actions  
-✅ **Monitoring & Observability** with CloudWatch  
+1. **Local Development**: Uses in-memory repository with local profile
+2. **Testing**: Comprehensive unit and integration tests
+3. **Containerization**: Docker for consistent deployment
+4. **CI/CD**: Automated testing and deployment pipeline
+5. **Infrastructure**: Terraform for cloud resource management
 
-### **Software Engineering Practices:**
-✅ **Clean Architecture** with separation of concerns  
-✅ **Comprehensive Testing** with JUnit  
-✅ **API Documentation** with clear examples  
-✅ **Error Handling** with global exception handling  
-✅ **Input Validation** with Bean Validation  
-✅ **Caching Strategy** for performance optimization  
+## Configuration Management
 
-This structure demonstrates **enterprise-level organization** and **cloud engineering best practices** perfect for your interviews! 🚀
+- **Local Profile**: In-memory storage, no external dependencies
+- **Production Profile**: AWS DynamoDB, CloudWatch monitoring
+- **Test Profile**: Test-specific configurations and mocks

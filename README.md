@@ -1,67 +1,42 @@
-# 🚀 Cloud-Native Personal Expense Tracker
+# Cloud-Native Personal Expense Tracker
 
 [![CI/CD Pipeline](https://github.com/Taranjot13/Personal-Expense-Tracker/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/Taranjot13/Personal-Expense-Tracker/actions/workflows/ci-cd.yml)
-[![Java](https://img.shields.io/badge/Java-17-orange.svg)](https://www.oracle.com/java/)
+[![Java](https://img.shields.io/badge/Java-17+-orange.svg)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.2.0-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![AWS](https://img.shields.io/badge/AWS-Cloud%20Native-orange.svg)](https://aws.amazon.com/)
 [![Docker](https://img.shields.io/badge/Docker-Containerized-blue.svg)](https://www.docker.com/)
 
-A **enterprise-grade, cloud-native expense tracking system** built with modern technologies and best practices. This project demonstrates full-stack development skills with cloud engineering focus, perfect for showcasing in interviews for cloud engineer positions.
+A cloud-native expense tracking microservice built with Spring Boot, demonstrating modern software engineering practices and cloud deployment capabilities.
 
-## 🎯 **For Interviewers & Recruiters**
+## Features
 
-This project showcases **real-world cloud engineering skills** including:
-- ✅ **Microservices Architecture** with Spring Boot
-- ✅ **AWS Cloud Integration** (DynamoDB, CloudWatch, ECS)
-- ✅ **Containerization** with Docker & Docker Compose
-- ✅ **CI/CD Pipelines** with GitHub Actions
-- ✅ **Infrastructure as Code** (IaC) practices
-- ✅ **Monitoring & Observability** 
-- ✅ **RESTful API Design** with proper validation
-- ✅ **Cloud Security** best practices
+- **RESTful API** with comprehensive CRUD operations
+- **AWS DynamoDB** integration for scalable cloud storage
+- **Docker containerization** for consistent deployment
+- **Infrastructure as Code** with Terraform
+- **CI/CD pipeline** with GitHub Actions
+- **Profile-based configuration** for multiple environments
+- **Comprehensive testing** with JUnit
 
----
+## Architecture
 
-## 🏗️ **Architecture Overview**
+The application follows clean architecture principles with clear separation of concerns:
 
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Frontend      │    │   REST API      │    │   AWS Cloud     │
-│   (Future)      │◄──►│  Spring Boot    │◄──►│   DynamoDB      │
-│                 │    │   Application   │    │   CloudWatch    │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                ▲
-                                │
-                    ┌─────────────────┐
-                    │   Docker        │
-                    │  Containers     │
-                    └─────────────────┘
-```
+- **Controller Layer**: REST API endpoints with input validation
+- **Service Layer**: Business logic and caching
+- **Repository Layer**: Data access abstraction
+- **Model Layer**: Domain entities and DTOs
 
-## 🚀 **Key Features**
+## Technology Stack
 
-### **Cloud-Native Capabilities**
-- **RESTful API** with comprehensive endpoints
-- **AWS DynamoDB** integration for scalable NoSQL storage
-- **Docker containerization** for consistent deployments
-- **GitHub Actions CI/CD** for automated testing and deployment
-- **CloudWatch monitoring** and metrics collection
-- **Caching layer** with Caffeine for performance optimization
-
-### **Business Features**
-- **CRUD Operations** for expense management
-- **Real-time Analytics** and reporting
-- **Category-based expense tracking**
-- **Date range filtering** and search capabilities
-- **Multi-user support** with user isolation
-- **Soft delete** functionality for data integrity
-
-### **Technical Excellence**
-- **Input validation** and error handling
-- **Comprehensive logging** and monitoring
-- **Health checks** and observability
-- **Test coverage** with JUnit
-- **API documentation** with OpenAPI/Swagger
+| Component | Technology | Purpose |
+|-----------|------------|---------|
+| Backend | Java 17+, Spring Boot 3.2 | Core application framework |
+| Database | AWS DynamoDB / In-Memory | NoSQL storage (cloud/local) |
+| Containerization | Docker, Docker Compose | Application packaging |
+| Infrastructure | Terraform | Infrastructure as Code |
+| CI/CD | GitHub Actions | Automated testing & deployment |
+| Testing | JUnit 5, Spring Boot Test | Unit and integration testing |
 
 ---
 
@@ -69,64 +44,142 @@ This project showcases **real-world cloud engineering skills** including:
 
 | **Category** | **Technology** | **Purpose** |
 |--------------|----------------|-------------|
-| **Backend** | Java 17, Spring Boot 3.2 | Core application framework |
-| **Database** | AWS DynamoDB | NoSQL cloud database |
-| **Caching** | Caffeine | Performance optimization |
+| **Backend** | Java 17+, Spring Boot 3.2 | Core application framework |
+| **Database** | AWS DynamoDB / In-Memory | NoSQL storage (cloud/local) |
 | **Containerization** | Docker, Docker Compose | Application packaging |
 | **CI/CD** | GitHub Actions | Automated testing & deployment |
-| **Monitoring** | AWS CloudWatch, Micrometer | Observability and metrics |
+| **Infrastructure** | Terraform | Infrastructure as Code |
 | **Testing** | JUnit 5, Spring Boot Test | Unit and integration testing |
-| **Documentation** | OpenAPI 3.0 | API documentation |
+| **IDE** | VS Code with Java Extensions | Development environment |
 
 ---
 
-## 🚀 **Quick Start**
+## 📋 **Essential Features**
 
-### **Prerequisites**
-- Java 17+
-- Docker & Docker Compose
-- AWS CLI (for cloud deployment)
-- Git
+### **REST API Endpoints**
+- `POST /api/v1/expenses` - Create expense
+- `GET /api/v1/expenses` - List expenses (paginated)
+- `GET /api/v1/expenses/{id}` - Get specific expense
+- `PUT /api/v1/expenses/{id}` - Update expense
+- `DELETE /api/v1/expenses/{id}` - Delete expense
+- `GET /api/v1/expenses/analytics` - Get analytics
+- `GET /api/v1/expenses/health` - Health check
 
-### **1. Clone Repository**
-```bash
-git clone https://github.com/Taranjot13/Personal-Expense-Tracker.git
-cd Personal-Expense-Tracker
+### **Cloud-Ready Features**
+- **Profile-based Configuration** (local vs production)
+- **Repository Pattern** for data abstraction
+- **Global Exception Handling**
+- **Input Validation** with Bean Validation
+- **Comprehensive Testing**
+- **Docker Containerization**
+- **CI/CD Pipeline**
+
+---
+
+## 📁 **Project Structure**
+```
+src/main/java/com/expensetracker/
+├── controller/     # REST API endpoints
+├── service/        # Business logic
+├── repository/     # Data access layer
+├── model/          # Domain entities
+├── dto/            # Data transfer objects
+├── exception/      # Error handling
+└── config/         # Configuration classes
 ```
 
-### **2. Local Development**
+---
+
+## Getting Started
+
+### Prerequisites
+- Java 17 or higher
+- VS Code with Java Extension Pack (recommended)
+- Docker (for containerized deployment)
+
+### Running Locally
+
+**Method 1: VS Code (Recommended)**
+1. Open project in VS Code
+2. Press `F5` or go to Run → Start Debugging
+3. Select "Run Expense Tracker"
+4. Application starts at `http://localhost:8080`
+
+**Method 2: Command Line**
 ```bash
-# Start with Docker Compose (includes local DynamoDB)
+java -cp "src/main/java;src/main/resources" -Dspring.profiles.active=local com.expensetracker.ExpenseTrackerApplication
+```
+
+**Method 3: Docker**
+```bash
 docker-compose up -d
-
-# Or run locally with Maven
-mvn spring-boot:run
 ```
 
-### **3. Test the API**
+### Testing the API
+
 ```bash
-# Health check
-curl http://localhost:8080/api/v1/expenses/health
+# Health Check
+GET http://localhost:8080/api/v1/expenses/health
 
-# Create expense
-curl -X POST http://localhost:8080/api/v1/expenses \
-  -H "Content-Type: application/json" \
-  -H "User-Id: user123" \
-  -d '{
-    "amount": 25.50,
-    "category": "Food",
-    "description": "Lunch at restaurant"
-  }'
+# Create Expense
+POST http://localhost:8080/api/v1/expenses
+Headers: User-Id: demo-user, Content-Type: application/json
+Body: {"amount": 25.50, "category": "Food", "description": "Lunch"}
 
-# Get expenses
-curl http://localhost:8080/api/v1/expenses \
-  -H "User-Id: user123"
+# Get Expenses
+GET http://localhost:8080/api/v1/expenses
+Headers: User-Id: demo-user
 ```
 
-### **4. Access Documentation**
-- **API Docs**: http://localhost:8080/swagger-ui.html
-- **Health Endpoint**: http://localhost:8080/actuator/health
-- **Metrics**: http://localhost:8080/actuator/metrics
+## API Documentation
+
+### Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/v1/expenses/health` | Health check |
+| `POST` | `/api/v1/expenses` | Create new expense |
+| `GET` | `/api/v1/expenses` | List user expenses (paginated) |
+| `GET` | `/api/v1/expenses/{id}` | Get specific expense |
+| `PUT` | `/api/v1/expenses/{id}` | Update expense |
+| `DELETE` | `/api/v1/expenses/{id}` | Delete expense |
+| `GET` | `/api/v1/expenses/analytics` | Get expense analytics |
+
+### Configuration Profiles
+
+- **Local Profile**: Uses in-memory storage, no AWS dependencies
+- **Production Profile**: Uses AWS DynamoDB for cloud deployment
+
+## Deployment
+
+### Local Development
+```bash
+# Run with local profile (default)
+java -Dspring.profiles.active=local -jar target/expense-tracker.jar
+```
+
+### Cloud Deployment
+```bash
+# Deploy infrastructure
+cd infrastructure
+terraform init && terraform apply
+
+# Build and deploy application
+docker build -t expense-tracker .
+# Push to container registry and deploy
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -142,133 +195,38 @@ curl http://localhost:8080/api/v1/expenses \
 | `GET` | `/api/v1/expenses/analytics` | Get expense analytics |
 | `GET` | `/api/v1/expenses/health` | Health check |
 
----
+## About
 
-## ☁️ **Cloud Deployment**
+This project demonstrates modern software engineering practices including:
 
-### **AWS Infrastructure**
-```bash
-# Deploy DynamoDB table
-aws dynamodb create-table \
-  --table-name expenses \
-  --attribute-definitions \
-    AttributeName=userId,AttributeType=S \
-    AttributeName=expenseId,AttributeType=S \
-  --key-schema \
-    AttributeName=userId,KeyType=HASH \
-    AttributeName=expenseId,KeyType=RANGE \
-  --billing-mode PAY_PER_REQUEST
+- **Clean Architecture** with separation of concerns
+- **Repository Pattern** for data abstraction
+- **Profile-based Configuration** for environment management
+- **Comprehensive Testing** with unit and integration tests
+- **Global Exception Handling** for robust error management
+- **Input Validation** with Bean Validation API
+- **Containerization** with Docker for consistent deployment
+- **Infrastructure as Code** with Terraform
+- **CI/CD Automation** with GitHub Actions
 
-# Deploy to ECS (after setting up ECR repository)
-docker build -t expense-tracker .
-docker tag expense-tracker:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
-docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/expense-tracker:latest
+## Development
+
+The application uses Spring Boot profiles to support different environments:
+
+- **Local Profile**: In-memory storage for development and testing
+- **Production Profile**: AWS DynamoDB for cloud deployment
+
+This design allows for rapid local development without requiring cloud resources while maintaining production-ready cloud integration.
+
+## Architecture
+
 ```
-
-### **Environment Variables**
-```bash
-# Required for AWS deployment
-AWS_REGION=us-east-1
-DYNAMODB_TABLE_NAME=expenses
-SPRING_PROFILES_ACTIVE=production
+src/main/java/com/expensetracker/
+├── controller/     # REST API endpoints
+├── service/        # Business logic layer
+├── repository/     # Data access abstraction
+├── model/          # Domain entities
+├── dto/            # Data transfer objects
+├── exception/      # Error handling
+└── config/         # Configuration classes
 ```
-
----
-
-## 📊 **Monitoring & Observability**
-
-The application includes comprehensive monitoring:
-
-- **Health Checks**: `/actuator/health`
-- **Metrics**: `/actuator/metrics` 
-- **CloudWatch Integration**: Automatic metrics export
-- **Custom Dashboards**: Business metrics tracking
-- **Alerting**: Configurable alerts for system health
-
----
-
-## 🧪 **Testing**
-
-```bash
-# Run all tests
-mvn test
-
-# Run with coverage
-mvn test jacoco:report
-
-# Integration tests
-mvn verify -Pintegration-tests
-```
-
----
-
-## 📈 **Performance Features**
-
-- **Caching**: Caffeine cache for frequently accessed data
-- **Pagination**: Efficient data loading for large datasets  
-- **Connection Pooling**: Optimized database connections
-- **Async Processing**: Non-blocking operations where applicable
-- **Resource Optimization**: JVM tuning for container environments
-
----
-
-## 🎓 **Learning Outcomes**
-
-This project demonstrates proficiency in:
-
-1. **Cloud Architecture Design**
-2. **Microservices Development** 
-3. **AWS Services Integration**
-4. **DevOps & CI/CD Practices**
-5. **Containerization & Orchestration**
-6. **API Design & Development**
-7. **Database Design & Optimization**
-8. **Monitoring & Observability**
-9. **Security Best Practices**
-10. **Software Engineering Principles**
-
----
-
-## 🤝 **Contributing**
-
-This is a learning project, but improvements are welcome!
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes  
-4. Add tests
-5. Submit a pull request
-
----
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 **About the Developer**
-
-**Taranjot Singh** - Aspiring Cloud Engineer  
-📧 Email: [your-email@example.com]  
-💼 LinkedIn: [your-linkedin-profile]  
-🌐 Portfolio: [your-portfolio-website]
-
-*"Built with passion for cloud technologies and modern software engineering practices."*
-
----
-
-## 🔮 **Future Enhancements**
-
-- [ ] **Frontend Dashboard** (React/Angular)
-- [ ] **Machine Learning** expense categorization
-- [ ] **Real-time Notifications** (SNS/SQS)
-- [ ] **Multi-currency Support**
-- [ ] **Budget Planning & Alerts**
-- [ ] **Data Export/Import** features
-- [ ] **Mobile App** (React Native/Flutter)
-- [ ] **Advanced Analytics** & Reporting
-
----
-
-⭐ **If this project helped you learn cloud engineering concepts, please give it a star!**

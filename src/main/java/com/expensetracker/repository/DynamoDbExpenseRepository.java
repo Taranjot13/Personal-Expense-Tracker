@@ -9,6 +9,7 @@ import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -18,8 +19,10 @@ import java.util.stream.Collectors;
 /**
  * DynamoDB implementation of ExpenseRepository
  * Handles all database operations with AWS DynamoDB
+ * Only active when not in local profile
  */
 @Repository
+@Profile("!local")
 public class DynamoDbExpenseRepository implements ExpenseRepository {
     
     private final DynamoDbTable<Expense> expenseTable;

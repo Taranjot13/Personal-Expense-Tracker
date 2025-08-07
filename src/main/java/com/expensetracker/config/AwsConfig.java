@@ -8,12 +8,15 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * AWS Configuration for DynamoDB integration
  * Handles AWS SDK setup and client configuration
+ * Only active when not in local profile
  */
 @Configuration
+@Profile("!local")
 public class AwsConfig {
     
     @Value("${aws.region:us-east-1}")

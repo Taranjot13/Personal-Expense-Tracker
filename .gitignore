@@ -1,15 +1,17 @@
 # Build artifacts
 target/
 *.jar
-*.war
 *.class
+
+# Maven wrapper (using global Maven)
+mvnw
+mvnw.cmd
+.mvn/
 
 # IDE files
 .idea/
 *.iml
-.vscode/
-*.swp
-*.swo
+.vscode/settings.json
 
 # OS files
 .DS_Store
@@ -19,30 +21,12 @@ Thumbs.db
 logs/
 *.log
 
-# Docker
-.docker/
-
-# AWS
-.aws/
-
 # Environment variables
 .env
 .env.local
-.env.production
-
-# Maven
-.mvn/wrapper/maven-wrapper.jar
 
 # Temporary files
 *.tmp
-*.temp
-
-# Database
-*.db
-*.sqlite
-
-# Node modules (if frontend is added)
-node_modules/
 
 # Terraform
 *.tfstate
