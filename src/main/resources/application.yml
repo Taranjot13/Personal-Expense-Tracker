@@ -1,0 +1,55 @@
+# Spring Boot Configuration
+spring:
+  application:
+    name: expense-tracker-api
+  
+  # Cache configuration
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=1000,expireAfterWrite=10m
+
+# AWS Configuration
+aws:
+  region: ${AWS_REGION:us-east-1}
+  dynamodb:
+    table-name: ${DYNAMODB_TABLE_NAME:expenses}
+
+# Server Configuration
+server:
+  port: ${PORT:8080}
+  servlet:
+    context-path: /
+
+# Management endpoints for monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  metrics:
+    export:
+      cloudwatch:
+        enabled: true
+        namespace: ExpenseTracker
+        batch-size: 20
+
+# Logging configuration
+logging:
+  level:
+    com.expensetracker: INFO
+    software.amazon.awssdk: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: logs/expense-tracker.log
+
+# Custom application properties
+app:
+  name: "Cloud-Native Expense Tracker"
+  version: "1.0.0"
+  description: "Enterprise-grade expense tracking system with AWS integration"
